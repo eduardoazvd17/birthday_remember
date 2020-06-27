@@ -1,4 +1,3 @@
-import 'package:birthdayremember/views/home.dart';
 import 'package:birthdayremember/views/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
