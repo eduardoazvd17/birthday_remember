@@ -1,8 +1,22 @@
+import 'package:birthdayremember/services/database_service.dart';
+import 'package:birthdayremember/services/facebook_service.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
-  _loginFB(context) {
-    //TODO: Entrar com o facebook e armazenar os dados obtidos.
+import '../models/user.dart';
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  User user = DatabaseService().findUser();
+
+  _loginFB(context) async {
+    await FacebookService().getFriendList();
+    setState(() {
+      user = DatabaseService().findUser();
+    });
   }
 
   @override
@@ -35,15 +49,16 @@ class Home extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: ListView.builder(
-          itemCount: 10000,
+          itemCount: user.friends.length,
           itemBuilder: (ctx, index) {
+            var friend = user.friends[index];
             return Column(
               children: [
                 ListTile(
-                  title: Text('Nome da pessoa'),
+                  title: Text('${friend.name}'),
                   leading: CircleAvatar(),
                   trailing: Text(
-                    '02/05',
+                    '${friend.id}',
                     style: TextStyle(
                       color: Colors.pink,
                       fontWeight: FontWeight.bold,
