@@ -59,5 +59,6 @@ flutter {
 }
 
 dependencies {
+    implementation 'com.facebook.android:facebook-login:[5,6)'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

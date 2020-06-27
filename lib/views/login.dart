@@ -1,14 +1,16 @@
+import 'package:birthdayremember/services/facebook_service.dart';
 import 'package:birthdayremember/views/home.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
-  _loginFB(context) {
-    //TODO: Entrar com o facebook e armazenar os dados obtidos.
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (_) => Home(),
-      ),
-    );
+  _loginFB(context) async {
+    FacebookService().getFriendList().then(
+          (value) => Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (_) => Home(),
+            ),
+          ),
+        );
   }
 
   @override
